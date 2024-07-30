@@ -100,4 +100,12 @@ public class TicketServiceImplTest {
     ticketService.purchaseTickets(1L, adult);
   }
 
+  @Test
+  public void testInvalidAccount(){
+    TicketTypeRequest adult = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 1);
+    thrown.expect(InvalidPurchaseException.class);
+    thrown.expectMessage("Invalid account id");
+    ticketService.purchaseTickets(-1L, adult);
+  }
+
 }
